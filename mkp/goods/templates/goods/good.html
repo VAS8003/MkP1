@@ -1,0 +1,84 @@
+{% extends 'goods/base.html' %}
+
+{% block content %}
+<style>
+.product-page {
+  display: flex;
+  align-items: center;
+}
+
+.product-info {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.product-info h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-info img.main_photo {
+  width: 300px;
+  height: auto;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.product-info p.annotation {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.product-info .price-info {
+  display: flex;
+  align-items: flex-start;
+}
+
+.product-info .price-info p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.product-info .price-info .price-opt {
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.product-info .price-info .opt-stock {
+  color: #888;
+}
+</style>
+<h3>Опис товару:</h3>
+<br><br>
+<div class="product-page">
+  {% if good.photo %}
+    <div class="product-photo">
+      <img class="main_photo" src="{{ good.photo.url }}" alt="">
+    </div>
+  {% endif %}
+  <div class="product-info">
+    <h1>{{ good.title }}</h1>
+    {% if goods == 0 %}
+      <p>У вас поки немає товарів</p>
+    {% else %}
+      <p class="annotation">{{ good.annotation|linebreaks }}</p>
+      <div class="price-info">
+        <p class="price-opt">Оптова ціна: {{ good.price_opt }}</p>
+
+        <p>Наявність:
+          <span class="opt-stock">
+            {% if good.opt_stock > 100 %}
+            100 +
+            {% else %}
+            {{ good.opt_stock }}
+            {% endif %}
+          </span>
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

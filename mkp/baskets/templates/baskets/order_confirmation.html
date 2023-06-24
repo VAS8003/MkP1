@@ -1,0 +1,10 @@
+{% extends 'users/base_users.html' %}
+
+{% block content %}
+
+Дякую за замовлення! Найближчим часом ми його опрацюємо.
+<br>
+Спостерігати за статусом замовлення можете зa посиланням:
+<br>
+<a href="{% url 'history_orders' %}">Історія замовлень</a></li>
+{% endblock content %}

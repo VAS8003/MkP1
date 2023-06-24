@@ -1,0 +1,37 @@
+{% extends 'users/base_users.html' %}
+
+{% block content %}
+  <h1>Оформлення замовлення</h1>
+
+  <h2>Інформація про замовлення:</h2>
+  <ul class="order-items">
+    {% for cart_item in cart.get_cart_items %}
+      <li class="order-item">
+        <div class="item-details">
+          <h3>{{ cart_item.good.title }}</h3>
+          <p class="quantity">Кількість: {{ cart_item.quantity }}</p>
+          <p class="price">Вартість: {{ cart_item.get_total_price }} грн.</p>
+        </div>
+        <div class="item-image">
+          <img src="{{ cart_item.good.photo.url }}" alt="Product Image">
+        </div>
+      </li>
+    <hr>
+    {% empty %}
+      <p>В вас ще немає товарів в кошику</p>
+    {% endfor %}
+  </ul>
+  <h4>Загальна кількість товарів: {{ cart.get_total_quantity }} грн.</h4>
+  <h4>Загальна вартість товарів: {{ cart.get_total_price }} грн.</h4>
+  {% if messages %}
+    {% for message in messages %}
+      <div {% if message.tags %} class="{{ message.tags }}"{% endif %}><span class="red">{{ message }}</span></div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="POST" action="{% url 'checkout' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="submit-btn">Розмістити замовлення</button>
+  </form>
+{% endblock content %}

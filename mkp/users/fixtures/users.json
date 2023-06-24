@@ -1,0 +1,50 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$toNRGm7tTVPmEwb2fOInO9$qLoxYftzhTHD0i2Fs4Vnsmd+/PwNgHV0WxnCtxlZpbg=",
+      "last_login": "2023-06-08T06:10:27.625Z",
+      "is_superuser": true,
+      "username": "adminVAS80",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-06-08T06:10:00.533Z",
+      "user_image": "",
+      "seller_image": "",
+      "seller_name": "",
+      "seller_status": false,
+      "drop_status": false,
+      "provider_status": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$ABBd6BT6DJsdEIUdqwQ8B0$JE1O8KcVqLmvQGXhr+v6Hya5/09QdGmWzEw0aOfvQyE=",
+      "last_login": "2023-06-08T06:10:58.149Z",
+      "is_superuser": false,
+      "username": "user1",
+      "first_name": "",
+      "last_name": "",
+      "email": "user1@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-06-08T06:10:56.752Z",
+      "user_image": "",
+      "seller_image": "",
+      "seller_name": "",
+      "seller_status": false,
+      "drop_status": false,
+      "provider_status": false,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

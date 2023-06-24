@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Експорт товарів</h1>
+
+  <p>Натисніть кнопку нижче, щоб експортувати всі товари у файл Excel:</p>
+  <form method="GET" action="{% url 'exsport' %}">
+    <button type="submit" class="btn btn-primary">Експортувати в Excel</button>
+  </form>
+{% endblock content %}

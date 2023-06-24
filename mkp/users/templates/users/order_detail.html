@@ -1,0 +1,38 @@
+{% extends 'users/base_users.html' %}
+
+{% block content %}
+  <h2>Деталі замовлення №{{ order.id }}</h2>
+  <p>Дата створення: {{ order.created_at }}</p>
+  <p>Загальна кількість товарів: {{ order.get_total_quantity }}</p>
+  <p>Загальна вартість замовлення: {{ order.total_amount }} грн.</p>
+  <p>Статус замовлення: {{ order.status }}</p>
+  <hr>
+
+  <h3>Товари у замовленні:</h3>
+  {% if order.items.all %}
+    <table>
+      <thead>
+        <tr>
+          <th>Артикул</th>
+          <th>Назва</th>
+          <th>Кількість</th>
+          <th>Ціна за одиницю</th>
+          <th>Вартість</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in order.items.all %}
+          <tr>
+            <td>{{ item.good.article }}</td>
+            <td>{{ item.good.title }}</td>
+            <td>{{ item.quantity }} шт.</td>
+            <td>{{ item.price }} грн</td>
+            <td>{{ item.subtotal }} грн</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Немає товарів у замовленні.</p>
+  {% endif %}
+{% endblock %}

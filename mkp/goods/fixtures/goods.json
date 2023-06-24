@@ -1,0 +1,56 @@
+[
+  {
+    "model": "goods.good",
+    "pk": 1,
+    "fields": {
+      "title": "Smok Nord Bar 4000 Mixed Fruit 2% (╘ЁєъЄютшщ ь│ъё)",
+      "slug": "Smok-Nord-Bar-4000-Mixed-Fruit-2",
+      "annotation": "─ютуюуЁр■ў│, ёЄшы№э│ ръёхёєрЁш фы  Ёхуєы Ёэюую тшъюЁшёЄрээ . ═хчтрцр■ўш эр Єх, ∙ю яЁшёЄЁю┐ ттрцр■Є№ё  юфэюЁрчютшьш, тюэш ЁючЁрїютрэ│ ф│щёэю эрфютую. 4000 чрЄ цюъ, яЁшсышчэю т 4 Ёрчш фют°│ чр чтшўрщэє хыхъЄЁюээє ёшурЁхЄє. ┬хышър ъ│ы№ъ│ёЄ№ чрЄ цюъ ьр║ фюёЄрЄэ№ю ь│ёЄъшщ сръ эр 8,5 ьы ёюы№ютю┐ э│ъюЄшэютю┐ Ё│фшэш.",
+      "description": "",
+      "photo": "xPod-Smok-Nord-Bar-4000-Mixed-Fruit-2_pm4qm5j.jpg",
+      "time_create": "2023-06-08T06:14:14.502Z",
+      "time_update": "2023-06-08T06:14:14.532Z",
+      "is_published": true,
+      "owner": 2,
+      "provider": null,
+      "full_stock": 0,
+      "article": "S000002",
+      "price_opt": "228.00",
+      "price_b2c": "499.00",
+      "price_drop": "300.00",
+      "price_mrc": "499.00",
+      "opt_stock": 100,
+      "b2c_stock": 0,
+      "drop_stock": 0,
+      "cat": 1,
+      "brand": 1
+    }
+  },
+  {
+    "model": "goods.good",
+    "pk": 2,
+    "fields": {
+      "title": "Smok Nord Bar 4000 Grape 2% (┬шэюуЁрф)",
+      "slug": "Smok-Nord-Bar-4000-Grape-2",
+      "annotation": "─ютуюуЁр■ў│, ёЄшы№э│ ръёхёєрЁш фы  Ёхуєы Ёэюую тшъюЁшёЄрээ . ═хчтрцр■ўш эр Єх, ∙ю яЁшёЄЁю┐ ттрцр■Є№ё  юфэюЁрчютшьш, тюэш ЁючЁрїютрэ│ ф│щёэю эрфютую. 4000 чрЄ цюъ, яЁшсышчэю т 4 Ёрчш фют°│ чр чтшўрщэє хыхъЄЁюээє ёшурЁхЄє. ┬хышър ъ│ы№ъ│ёЄ№ чрЄ цюъ ьр║ фюёЄрЄэ№ю ь│ёЄъшщ сръ эр 8,5 ьы ёюы№ютю┐ э│ъюЄшэютю┐ Ё│фшэш.",
+      "description": "",
+      "photo": "xPod-Smok-Nord-Bar-4000-Grape-2_GcQOKjS.jpg",
+      "time_create": "2023-06-08T06:15:45.652Z",
+      "time_update": "2023-06-08T06:15:45.684Z",
+      "is_published": true,
+      "owner": 2,
+      "provider": null,
+      "full_stock": 0,
+      "article": "S000003",
+      "price_opt": "228.00",
+      "price_b2c": "499.00",
+      "price_drop": "300.00",
+      "price_mrc": "499.00",
+      "opt_stock": 100,
+      "b2c_stock": 0,
+      "drop_stock": 0,
+      "cat": 1,
+      "brand": 1
+    }
+  }
+]

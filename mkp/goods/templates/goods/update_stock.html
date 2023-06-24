@@ -1,0 +1,20 @@
+{% extends 'opt/base_seller.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Оновлення залишків товарів</h2>
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+  <form method="POST" enctype="multipart/form-data" action="{% url 'update_stock' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="fileInput">Виберіть файл Excel:</label>
+      <input type="file" class="form-control-file" id="fileInput" name="excel_file">
+    </div>
+    <button type="submit" class="btn btn-primary">Оновити залишки</button>
+  </form>
+</div>
+{% endblock %}

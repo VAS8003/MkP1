@@ -1,0 +1,64 @@
+{% extends 'opt/base_seller.html' %}
+
+{% block content %}
+<h3>{{ title }}</h3>
+
+{% for order in page_obj %}
+    <div>
+        <h3>Замовлення №{{ order.id }}</h3>
+        <p>Дата створення: {{ order.created_at }}</p>
+        <p>Користувач: {{ order.user.first_name }}</p>
+        <p>Статус: <span class="{% if order.status.status == 'Новий' %}status_new{% else %}status_other{% endif %}">{{ order.status.status }}</span></p>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="order_id" value="{{ order.id }}">
+            <button type="submit" class="btn btn-primary">Оновити статус</button>
+        </form>
+        <p>Адреса доставки: {{ order.address }}</p>
+        <p>Метод платежу: {{ order.payment_method }}</p>
+        <h4>Товари в замовленні:</h4>
+        <ul>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Артикул</th>
+                    <th>Назва</th>
+                    <th>Кількість</th>
+                    <th>Ціна</th>
+                    <th>Всього</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.items.all %}
+                        <tr>
+                            <td>{{ item.good.article }}</td>
+                            <td>{{ item.good }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.price }}</td>
+                            <td>{{ item.subtotal }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </ul>
+        <p>Загальна кількість: {{ order.total_quantity }}</p>
+        <br>
+        <p>Загальна сума замовлення: {{ order.total_amount }} грн.</p>
+
+        <form method="POST" action="{% url 'delete_order' order.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Видалити замовлення</button>
+        </form>
+        <br>
+        <form method="post" action="{% url 'print_order' order.id %}" target="_blank">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Друк</button>
+        </form>
+    </div>
+    <br>
+    <hr>
+{% endfor %}
+
+
+{% endblock %}

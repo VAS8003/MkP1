@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Print Order</title>
+    <link rel="stylesheet" href="{% static 'opt/css/style.css' %}">
+    <style>
+        /* Добавте стилі CSS для печатної форми */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        li:before {
+            content: counter(item-counter);
+            counter-increment: item-counter;
+            margin-right: 5px;
+        }
+
+        button#print-btn {
+            display: none;
+        }
+
+        @media print {
+            button#print-btn {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>Замовлення №{{ order.id }}</h3>
+        <p>Користувач: {{ order.user.first_name }}</p>
+        <p>Статус: <span class="{% if order.status.status == 'Новий' %}status_new{% else %}status_other{% endif %}">{{ order.status.status }}</span></p>
+        <p>Адреса доставки: {{ order.address }}</p>
+        <p>Метод платежу: {{ order.payment_method }}</p>
+        <h4>Товари в замовленні:</h4>
+        <ul>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Артикул</th>
+                    <th>Назва</th>
+                    <th>Кількість</th>
+                    <th>Ціна</th>
+                    <th>Всього</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.items.all %}
+                        <tr>
+                            <td>{{ item.good.article }}</td>
+                            <td>{{ item.good }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.price }}</td>
+                            <td>{{ item.subtotal }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </ul>
+        <p>Загальна кількість: {{ total_quantity }}</p>
+        <br>
+        <p>Загальна сума замовлення: {{ total }} грн.</p>
+
+
+    </div>
+
+
+    <script>
+        window.onload = function() {
+            window.print();
+        };
+    </script>
+</body>
+</html>

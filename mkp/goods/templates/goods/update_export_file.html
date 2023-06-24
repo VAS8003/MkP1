@@ -1,0 +1,12 @@
+{% extends 'opt/base_seller.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Оновлення залишків товарів</h2>
+  <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file">
+        <button type="submit">Завантажити</button>
+    </form>
+    <p>Шлях до файлу: {{ file_path }}</p>
+{% endblock %}

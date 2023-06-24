@@ -1,0 +1,51 @@
+{% extends 'users/base_users.html' %}
+
+{% block content %}
+  {% if cart_items %}
+    <h1>Кошик</h1>
+
+    <h2>Товари</h2>
+    {% if messages %}
+    {% for message in messages %}
+      <div {% if message.tags %} class="{{ message.tags }}"{% endif %}><span class="red">{{ message }}</span></div>
+    {% endfor %}
+    {% endif %}
+    <ul class="cart-list">
+      {% for cart_item in cart_items %}
+        <li class="cart-item">
+          <div class="cart-item-image">
+            <img class="main-photo" src="{{ cart_item.good.photo.url }}" alt="Product Image">
+          </div>
+          <div class="cart-item-details">
+            <h3>{{ cart_item.good.title }}</h3>
+            <p class="price">Ціна за одиницю: {{ cart_item.good.price_opt }} грн.</p>
+            <p>Кількість: {{ cart_item.quantity }}</p>
+            <p class="total-price">Сума: {{ cart_item.get_total_price }} грн.</p>
+            <form method="POST" action="{% url 'update_cart_item' cart_item.id %}">
+              {% csrf_token %}
+              <input type="number" name="quantity" min="1" value="{{ cart_item.quantity }}" class="quantity-input">
+              <input type="submit" value="Змінити кількість" class="quantity-btn">
+            </form>
+            <br>
+            <form method="POST" action="{% url 'remove_from_cart' cart_item.id %}">
+              {% csrf_token %}
+              <button type="submit" class="remove-btn">Видалити товар з кошика</button>
+            </form>
+            <hr>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+    <h2>Загальна кількість товарів: {{ cart.get_total_quantity }} грн.</h2>
+    <h2>Загальна вартість товарів: {{ cart.get_total_price }} грн.</h2>
+
+    <form method="POST" action="{% url 'checkout' %}">
+      {% csrf_token %}
+      {{ order_form.as_p }}
+      <button type="submit" class="checkout-btn">Перейти до оформлення</button>
+    </form>
+
+  {% else %}
+    <p>Ваш кошик пустий. Додайте товар до кошику.</p>
+  {% endif %}
+{% endblock content %}

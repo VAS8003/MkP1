@@ -1,0 +1,24 @@
+{% extends 'users/base_users.html' %}
+
+{% block content %}
+  <h2>Історія замовлень</h2>
+  {% if orders %}
+    <ul>
+      {% for order in orders %}
+        <li>
+          {{ order.created_at }}<br>
+          Замовлення №{{ order.id }}<br>
+          Загальна кількість товарів: {{ order.total_quantity }}<br>
+          Загальна вартість замовлення: {{ order.total_amount }} грн.<br>
+          Статус замовлення: {{ order.status }}<br>
+          <a href="{% url 'order_detail' order.id %}">Переглянути замовлення</a><br>
+          <hr>
+        </li>
+      {% endfor %}
+    </ul>
+
+
+  {% else %}
+    <p>У вас поки немає замовлень.</p>
+  {% endif %}
+{% endblock %}

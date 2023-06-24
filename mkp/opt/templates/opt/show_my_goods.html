@@ -1,0 +1,42 @@
+{% extends 'opt/base_seller.html' %}
+<h3>{{ title }}</h3>
+{% block goods %}
+
+
+
+{% if my_goods.count == 0 %}
+<p>У Вас немає ще товарів</p>
+{% else %}
+<ul>
+    {% for g in my_goods %}
+
+
+    <p><img class="main_photo" src="{{ g.photo.url }}" alt="mv"></p>
+
+    <li>
+        <h2>{{ g.title }}</h2>
+        <p>{{ g.annotation }}</p>
+        <p>{{ g.description }}</p>
+        <p>{{ g.photo }}</p>
+        <p>{{ g.category }}</p>
+        <p>{{ g.time_create }}</p>
+        <p>{{ g.time_update }}</p>
+        <p>{{ g.is_published }}</p>
+        <p>{{ g.provider }}</p>
+        <p>{{ g.price_opt }} грн.</p>
+        <p>{{ g.price_b2c }} грн.</p>
+        <p>{{ g.price_drop }} грн.</p>
+        <p>{{ g.price_mrc }} грн.</p>
+        <p>{{ g.opt_stock }}</p>
+        <p>{{ g.b2c_stock }}</p>
+        <p>{{ g.drop_stock }}</p>
+        <p><a href="{{ g.get_absolute_url }}">Перейти на сторінку товару</a></p>
+        <a href="{% url 'edit_good' g.id %}" class="edit-button">Редактировать</a>
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+{% endblock goods %}

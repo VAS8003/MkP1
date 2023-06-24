@@ -1,0 +1,101 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'opt/css/style.css' %}">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="horizontal-menu">
+                {% block mainmenu %}
+                <div class="header">
+                    <ul id="mainmenu" class="mainmenu">
+                        {% for m in menu %}
+                        <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
+                        {% endfor %}
+                        {% if cart_items %}
+                        <li class="menu_li">
+                            <a href="{% url 'cart_view' %}">
+                                Кошик: ({{ total_quantity }}шт.) - Вартість: {{ total_price }} грн.
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="menu_li">
+                            <a href="{% url 'cart_view' %}">
+                                Кошик
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <div class="user-info">
+                        {% if request.user.is_authenticated %}
+                            <span class="user-name">{{ request.user.first_name }}</span>
+                            <span class="logout"><a href="{% url 'logout' %}">Вихід</a></span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endblock mainmenu %}
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <aside class="sidebar">
+            <!-- Боковое меню -->
+
+            <li>Мої сервіси:</li>
+            {% for ns in navi_seller %}
+            <li><a href="{% url ns.url_name %}">{{ ns.title }}</a></li>
+            {% endfor %}
+
+        </aside>
+        <main class="main">
+            <!-- Содержимое страницы -->
+            {% block goods %}
+            {% endblock goods %}
+            {% block content %}
+
+            {% endblock %}
+            {% if page_obj.has_other_pages %}
+                <nav class="list_pages">
+                    <ul>
+                        {% if page_obj.has_previous %}
+                            <li class="page_num">
+                                <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                            </li>
+                        {% endif %}
+                        {% for p in paginator.page_range %}
+                            {% if page_obj.number == p %}
+                                <li class="page_num page_num_selected">{{ p }}</li>
+                            {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                                <li class="page_num">
+                                    <a href="?page={{ p }}">{{ p }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                            <li class="page_num">
+                                <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        </main>
+    </div>
+
+    <footer>
+        <!-- Футер -->
+        <p>&copy; 2023 </p>
+    </footer>
+</body>
+</html>
+
+
+
+</html>

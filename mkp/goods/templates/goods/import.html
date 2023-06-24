@@ -1,0 +1,28 @@
+{% extends 'opt/base_seller.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>Загрузка товарів до БД</h2>
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name="file" accept=".xlsx">
+  <button type="submit">Імпортувати</button>
+</form>
+    <p class="red">ЗАЙДИ ПІД ЛОГІНОМ ВЛАСНИКА ТОВАРІВ</p>
+
+{% if success %}
+    <p>{{ success }}</p>
+{% endif %}
+
+{% if error %}
+    <p>{{ error }}</p>
+{% endif %}
+
+{% if errors %}
+    <ul>
+    {% for error_message in errors %}
+        <li>{{ error_message }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

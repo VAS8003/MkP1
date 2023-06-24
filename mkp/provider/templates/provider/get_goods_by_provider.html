@@ -1,0 +1,66 @@
+{% extends 'users/base_users.html' %}
+
+<title>STOCK</title>
+
+{% block content %}
+<style>
+  @media print {
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #a3ddba;
+    }
+
+    tr:nth-child(even) {
+      background-color: #eeeded;
+    }
+  }
+</style>
+
+<script>
+  function printTable() {
+    var printContents = document.getElementById("print-table").innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+  }
+</script>
+<br>
+<button onclick="printTable()">Print</button>
+
+<div id="print-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Артикул</th>
+        <th>Назва</th>
+        <th>Потрібно</th>
+        <th>В наявності</th>
+        <th>Потрібно добавити</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for good, difference in goods_with_difference %}
+      <tr>
+        <td>{{ good.article }}</td>
+        <td>{{ good.title }}</td>
+        <td>{{ good.full_stock }}</td>
+        <td>{{ good.opt_stock }}</td>
+        <td>{{ difference }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
